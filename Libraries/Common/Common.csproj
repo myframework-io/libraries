@@ -6,7 +6,7 @@
     <RootNamespace>Myframework.Libraries.Common</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Myframework</Authors>
-    <PackageIconUrl>file://192.168.101.34/Publico/Myframework/TI/RepositorioNuget/icon/Myframework.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <Version>1.0.76</Version>
     <AssemblyVersion>1.0.76.0</AssemblyVersion>
     <FileVersion>1.0.76.0</FileVersion>

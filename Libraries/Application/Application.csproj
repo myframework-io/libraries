@@ -8,7 +8,7 @@
     <Authors>Myframework</Authors>
     <Company>Myframework</Company>
     <Product>Myframework.Libraries.Application</Product>
-    <PackageIconUrl>file://192.168.101.34/Publico/Myframework/TI/RepositorioNuget/icon/Myframework.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <Version>1.0.76</Version>
     <AssemblyVersion>1.0.76.0</AssemblyVersion>
     <FileVersion>1.0.76.0</FileVersion>
@@ -51,8 +51,8 @@
   </ItemGroup>
 
   <!--Adicionado para especificar o local onde o pacote nuget será gerado-->
-  <!-- <Target Name="CopyPackage" AfterTargets="Pack">
+  <Target Name="CopyPackage" AfterTargets="Pack">
     <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\Nuget\" />
-  </Target> -->
+  </Target>
 
 </Project>

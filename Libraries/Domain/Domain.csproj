@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Myframework</Authors>
     <Company>Myframework</Company>
-    <PackageIconUrl>file://192.168.101.34/Publico/Myframework/TI/RepositorioNuget/icon/Myframework.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <Version>1.0.76</Version>
     <PackageReleaseNotes></PackageReleaseNotes>
     <AssemblyVersion>1.0.76.0</AssemblyVersion>
