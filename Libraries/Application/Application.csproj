@@ -51,8 +51,8 @@
   </ItemGroup>
 
   <!--Adicionado para especificar o local onde o pacote nuget será gerado-->
-  <Target Name="CopyPackage" AfterTargets="Pack">
+  <!-- <Target Name="CopyPackage" AfterTargets="Pack">
     <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\Nuget\" />
-  </Target>
+  </Target> -->
 
 </Project>
