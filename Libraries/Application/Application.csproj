@@ -43,11 +43,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infra\Infra.csproj" />
+    <Folder Include="MVC\Globalization\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MVC\Globalization\" />
+    <ProjectReference Include="..\Infra\Infra.csproj" />
   </ItemGroup>
 
   <!--Adicionado para especificar o local onde o pacote nuget será gerado-->
