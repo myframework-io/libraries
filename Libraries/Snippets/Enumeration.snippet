@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Modelo enumeration de domínio.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>enumeration</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Domain.SeedWork</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>className</ID>
+          <ToolTip>ClassName</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+            public class $className$ : Enumeration<byte>
+            {
+                private static List<$className$> allItens;
+            
+                public $className$() { }
+
+                public $className$(byte id, string name) : base(id, name) { }
+                
+                public static List<$className$> GetAll()
+                {
+                    if (allItens == null)
+                        allItens = GetAll<$className$>();
+
+                    return allItens;
+                }
+
+                public static readonly $className$ Item1 = new $className$(0, "Item 1");
+                public static readonly $className$ Item2 = new $className$(1, "Item 2");
+                public static readonly $className$ Item3 = new $className$(2, "Item 3");
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

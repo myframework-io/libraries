@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Query Linq para obter uma lista relacionada com filtro.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>repositoryDbContextExecuteSqlCommand</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.Data</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Data.SqlClient</Namespace>
+        </Import>        
+      </Imports>
+      <Code Language="CSharp">
+        <![CDATA[
+          await context.Database.ExecuteSqlCommandAsync(new RawSqlString(@"
+              -- SAMPLE
+              set xact_abort on
+              begin tran
+                  insert into abc...
+                  insert into abc...
+                  insert into abc...
+              commit"), new object[] { new SqlParameter("id", id) });
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Action HttpPost que processa um command.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>actionHttpPostCommand</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.CQRS.Mediators</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.AspNetCore.Mvc</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>resource</ID>
+          <ToolTip>Resource</ToolTip>
+          <Default>Resource</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="mediatorHandler"></param>
+            /// <param name="command"></param>
+            /// <returns></returns>
+            [Route(""), HttpPost]
+            public async Task<IActionResult> Create$resource$Async([FromServices]IMediatorHandler mediatorHandler, [FromBody]Create$resource$Command command) =>
+                GetIActionResult(await mediatorHandler.DispatchCommandAsync(command));
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

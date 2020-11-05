@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Classe de handle de command de update.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>appCommandUpdateHandle</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Results</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Domain.SeedWork</Namespace>
+        </Import>
+        <Import>
+          <Namespace>MediatR</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>entity</ID>
+          <ToolTip>Entity.</ToolTip>
+          <Default>EntityClass</Default>
+        </Literal>
+        <Literal>
+          <ID>entityVar</ID>
+          <ToolTip>Entity var name.</ToolTip>
+          <Default>entity</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public class Update$entity$CommandHandle : IRequestHandler<Update$entity$Command, Result>
+          {
+              private readonly IUnitOfWork unitOfWork;
+              private readonly I$entity$Repository repository;
+
+              public Update$entity$CommandHandle(IUnitOfWork unitOfWork, I$entity$Repository repository)
+              {
+                  this.unitOfWork = unitOfWork;
+                  this.repository = repository;
+              }
+
+              public async Task<Result> Handle(Update$entity$Command command, CancellationToken cancellationToken = default)
+              {
+                  var result = new Result();
+
+                  if (command == null)
+                      return result.SetBusinessMessage("Command cannot be null.");
+
+                  if (await repository.Check$entity$AlreadyExistsAsync(command.Id, command.Name))
+                      return result.SetBusinessMessage("There is already an $entity$ with this name.");
+
+                  $entity$ $entityVar$ = await repository.GetByIdAsync(command.Id);
+                  
+                  if ($entityVar$ == null)
+                      return result.SetBusinessMessage("$entity$ not found.");
+
+                  result = $entityVar$.Update(command.Name);
+
+                  if (!result.Valid)
+                      return result;
+
+                  return await unitOfWork.SaveChangesAsync();
+              }
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

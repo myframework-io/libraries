@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Modelo de background task.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>backgroundTask</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Dapper</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Application.Web.BackgroundTasks</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Results</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.Log.Contracts</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.Log.Options</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.Security</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Extensions.Logging</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Extensions.Options</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Newtonsoft.Json</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Data.SqlClient</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Net.Http</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Text</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>className</ID>
+          <ToolTip>ClassName</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+            /// <summary>
+            /// 
+            /// </summary>
+            public class $className$ : BaseBackgroundTask<$className$>
+            {
+                private readonly BackgroundTasksOptions taskOptions;
+                private readonly ConnectionStringsOptions connStringOptions;
+                private readonly LogOptions logOptions;
+                private readonly IErrorLogger errorLogger;
+                private readonly IClientTokenManager tokenManager;
+
+                /// <summary>
+                /// Construtor padrão.
+                /// </summary>
+                /// <param name="connStringOptions"></param>
+                /// <param name="taskOptions"></param>
+                /// <param name="logOptions"></param>
+                /// <param name="logger"></param>
+                /// <param name="errorLogger"></param>
+                /// <param name="tokenManager"></param>
+                public $className$(IOptions<ConnectionStringsOptions> connStringOptions, IOptions<BackgroundTasksOptions> taskOptions, IOptions<LogOptions> logOptions, ILogger<$className$> logger, IErrorLogger errorLogger, IClientTokenManager tokenManager)
+                    : base(taskOptions.Value.$className$, logger)
+                {
+                    this.taskOptions = taskOptions?.Value ?? throw new ArgumentException("Task options missing.", "taskOptions");
+                    this.connStringOptions = connStringOptions?.Value ?? throw new ArgumentException("Connection string options missing.", "connStringOptions");
+                    this.logOptions = logOptions?.Value ?? throw new ArgumentException("Log options missing.", "logOptions");
+                    this.errorLogger = errorLogger ?? throw new ArgumentException("Error log missing.", "errorLogger");
+                    this.tokenManager = tokenManager ?? throw new ArgumentException("Token Manager.", "tokenManager");
+                }
+
+                /// <summary>
+                /// Método de execução da background task.
+                /// </summary>
+                /// <returns></returns>
+                protected override async Task DoTaskAsync()
+                {
+                    Result<string> resultToken = await tokenManager.GetAccessTokenAsync();
+
+                    if (!resultToken.Valid)
+                    {
+                        string errorMsg = $$"{nameof($className$)}: Error on get token. Details: {resultToken.Message}";
+                        //File.AppendAllText(Path.Combine(logOptions.DirectoryToLogErrorsOnFail, $$"Log-{nameof($className$)}-{DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")}.txt"), );
+                        logger.LogCritical(errorMsg);
+                        await errorLogger.LogAsync(new Exception(errorMsg), Guid.NewGuid(), null, null, nameof($className$), null);
+                        return;
+                    }
+
+                    var itensToProcess = new List<Guid>();
+
+                    using (var conn = new SqlConnection(connStringOptions.DefaultConnectionString))
+                    {
+                        try
+                        {
+                            conn.Open();
+                            itensToProcess = conn.Query<Guid>($$@"
+                                WRITE QUERY HERE!").ToList();
+                        }
+                        catch (Exception exception)
+                        {
+                            logger.LogCritical($$"{nameof($className$)}: {exception.Message}");
+                            await errorLogger.LogAsync(exception, Guid.NewGuid(), null, null, nameof($className$), null);
+                        }
+                    }
+                    
+                    string token = resultToken.Value;
+
+                    var httpClient = new HttpClient { BaseAddress = new Uri(taskOptions.ApiBaseUrl) };
+                    httpClient.SetBearerToken(token);
+
+                    foreach (Guid itemID in itensToProcess)
+                    {
+                        var obj = new
+                        {
+                            //TODO: this is an example, change to contract
+                            HospitalIntegrationTypeId = itemID
+                        };
+
+                        string json = JsonConvert.SerializeObject(obj);
+
+                        //Obs: sem await para não aguardar resposta
+                        httpClient.PostAsync(taskOptions.$className$.ApiRoute, new StringContent(json, Encoding.UTF8, "application/json"));
+                    }
+                }
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Interface de repository.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>repositoryInterface</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Domain.Repositories</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>agreggateRootEntity</ID>
+          <ToolTip>Aggregate root entity.</ToolTip>
+          <Default>AgreggateRootEntity</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public interface I$agreggateRootEntity$Repository : IRepository<$agreggateRootEntity$>
+          {
+              
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

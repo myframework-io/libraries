@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Exemplo de composição de query.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>queriesPagedComposeSample</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Pagination</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.CQRS.Queries</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Extensions.Options</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Dynamic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>listType</ID>
+          <ToolTip>List type.</ToolTip>
+          <Default>BasePageViewModel</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public async Task<PagedList<$listType$>> GetItensPagedAsync($listType$ filter)
+          {
+              if (filter == null)
+                  return new PagedList<$listType$>(new List<$listType$>(), 0, 0, 10);
+
+              filter.ItensPerPage = NormalizeItensPerPage(filter.ItensPerPage);
+              filter.Page = NormalizePage(filter.Page);
+
+              dynamic parameters = new ExpandoObject();
+              parameters.itensPerPage = filter.ItensPerPage;
+              parameters.page = filter.Page;
+
+              string where = "";
+              where += ComposeWhereClause(parameters, filter.Id, "l.Id", "id");
+              where += ComposeWhereClause(parameters, filter.StartDate, "l.CreatedOn", "startDate", operationType: ">=");
+              where += ComposeWhereClause(parameters, filter.FinishDate, "l.CreatedOn", "finishDate", operationType: "<=");
+
+              where = NormalizeWhereClause(where);
+              
+              string orderOrientation = filter.OrderAscendent ? "asc" : "desc";
+              string orderBy = "l.Id";
+
+              // Nota: Use o swith abaixo caso seja possível ordernar colunas de uma tabela usada com join
+              if (filter.Order.HasValue)
+              {
+                  switch (filter.Order.Value)
+                  {
+                      case LogSampleOrderEnum.DetailId:
+                      case LogSampleOrderEnum.DetailDesc:
+                          orderBy = $$"ld.{filter.Order.Value.ToString()}";
+                          break;
+
+                      default:
+                          orderBy = $$"l.{filter.Order.Value.ToString()}";
+                          break;
+                  }
+              }
+
+              string from = @"
+                  from 
+	                  LogSample l
+                    join LogDetailSample ld on l.Id = ld.LogSampleId
+              ";
+
+              PagedList<$listType$> recordsPaged =
+                  await QueryPagedAsync<$listType$>(connStringOptions.DefaultConnectionString, filter.Page, filter.ItensPerPage,
+                  param: parameters,
+                  queryCount: $$@"
+                      select 
+	                      count(*)
+                      {from}
+                      {where}",
+                  queryPaged: $$@"
+                    select 
+                      l.Id, 
+                      l.CreatedOn,
+                      ld.Id as DetailId,
+                      ld.Desc as DetailDesc
+                    {from}
+                    {where}
+                    order by {orderBy} {orderOrientation}
+                    OFFSET @itensPerPage * @page ROWS
+                    FETCH NEXT @itensPerPage ROWS ONLY;");
+
+              return recordsPaged;
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

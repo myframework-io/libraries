@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Classe de map de entidade.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>mapEnumeration</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore.Metadata.Builders</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>entity</ID>
+          <ToolTip>Entity.</ToolTip>
+          <Default>Entity</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          internal class $entity$Map : IEntityTypeConfiguration<$entity$>
+          {
+              public void Configure(EntityTypeBuilder<$entity$> builder)
+              {
+                  builder.ToTable("$entity$");
+
+                  builder.HasKey(it => it.Id);
+                  
+                  builder.Property(it => it.Id).ValueGeneratedNever().HasColumnName("Id").IsRequired();
+                  builder.Property(it => it.Name).HasColumnName("Name").HasMaxLength(50).IsRequired();
+              }
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
+

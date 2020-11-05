@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Myframework.Libraries.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Myframework.Libraries.Domain.CQRS.DomainEvent.BaseDomainEvent">
+            <summary>
+            Classe base para eventos de domínio que tem resultado (Result).
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Domain.CQRS.DomainEvent.BaseDomainEvent.Protocol">
+            <summary>
+            Protocolo do comando.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent">
+            <summary>
+            Interface para eventos de domínio que especifica um retorno genérico.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent.Protocol">
+            <summary>
+            Protocolo do evento.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Domain.Repositories.IRepository`1">
+            <summary>
+            Repositório base para raízes de agregado.
+            </summary>
+            <typeparam name="TAggregateRoot"></typeparam>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.Repositories.IRepository`1.GetByIdAsync(System.Object,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{System.Object}}}[])">
+            <summary>
+            Retorna a entidade filtrando pelo id, carregando as entidades relacinadas no parametro includes 
+            </summary>
+            <param name="id"></param>
+            <param name="relatedEntitiesToLoad"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.Repositories.IRepository`1.GetById(System.Object,System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{System.Object}}}[])">
+            <summary>
+            Retorna a entidade filtrando pelo id, carregando as entidades relacinadas no parametro includes 
+            </summary>
+            <param name="id"></param>
+            <param name="relatedEntitiesToLoad"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.Repositories.IRepository`1.Add(`0)">
+            <summary>
+            Adiciona a entidade no context para operação de insert
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.Repositories.IRepository`1.Update(`0)">
+            <summary>
+            Altera a entidade no context para operação de update
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.Repositories.IRepository`1.Delete(`0)">
+            <summary>
+            Remove a entidade do context para operação de delete
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Domain.SeedWork.Entity">
+            <summary>
+            Classe base para entidades.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Domain.SeedWork.Entity.DomainEvents">
+            <summary>
+            Eventos de domínio cadsatrados.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Entity.AddDomainEvent(Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent)">
+            <summary>
+            Adiciona um evento de domínio à entidade.
+            </summary>
+            <param name="eventItem"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Entity.RemoveDomainEvent(Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent)">
+            <summary>
+            Remove o evento de domínio.
+            </summary>
+            <param name="eventItem"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Entity.ClearDomainEvents">
+            <summary>
+            Zera a lista de eventos de domínio.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Entity.Equals(System.Object)">
+            <summary>
+            Verifica se essa instância é igual a outra.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Entity.GetHashCode">
+            <summary>
+            Retorna o hash do objeto.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Entity.op_Equality(Myframework.Libraries.Domain.SeedWork.Entity,Myframework.Libraries.Domain.SeedWork.Entity)">
+            <summary>
+            Verifica se as entidades são a mesmas.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Entity.op_Inequality(Myframework.Libraries.Domain.SeedWork.Entity,Myframework.Libraries.Domain.SeedWork.Entity)">
+            <summary>
+            Verifica se as entidades são diferentes.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Domain.SeedWork.Enumeration`1">
+            <summary>
+            Classe que representa um enum, mas com recursos de OO (object-oriented).
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.#ctor">
+            <summary>
+            Construtor padrão.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.#ctor(`0,System.String)">
+            <summary>
+            Construtor para iniciar o enumerador.
+            </summary>
+            <param name="id"></param>
+            <param name="name"></param>
+        </member>
+        <member name="P:Myframework.Libraries.Domain.SeedWork.Enumeration`1.Id">
+            <summary>
+            Inteiro para representar o enumerador.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Domain.SeedWork.Enumeration`1.Name">
+            <summary>
+            Descrição do enumerador.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.ToString">
+            <summary>
+            Retorna a descrição do enumarador.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.GetAll``1">
+            <summary>
+            Retorna todos os possíveis valores para o enumerador.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.Equals(System.Object)">
+            <summary>
+            Verifica se o objeto informado é igual a esta instância.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.GetHashCode">
+            <summary>
+            Retorna o hash da instância.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.FromId``1(`0)">
+            <summary>
+            Retorna o eumerador que corresponde ao ID informado.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.FromName``1(System.String)">
+            <summary>
+            Retorna o enumerador a partir do nome.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="displayName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Domain.SeedWork.IAggregateRoot">
+            <summary>
+            Interface para representar uma raíz de agregação.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Domain.SeedWork.IEntity.DomainEvents">
+            <summary>
+            Eventos de domínio cadsatrados.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.IEntity.AddDomainEvent(Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent)">
+            <summary>
+            Adiciona um evento de domínio à entidade.
+            </summary>
+            <param name="eventItem"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.IEntity.RemoveDomainEvent(Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent)">
+            <summary>
+            Remove o evento de domínio.
+            </summary>
+            <param name="eventItem"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.IEntity.ClearDomainEvents">
+            <summary>
+            Zera a lista de eventos de domínio.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Domain.SeedWork.IUnitOfWork">
+            <summary>
+            Interface com os comandos públicos para serem executados fora do contexto de banco de dados.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.IUnitOfWork.SaveChanges">
+            <summary>
+            Persiste de forma síncrona todas as modificações feitas no contexto.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.IUnitOfWork.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Persiste de forma assíncrona todas as modificações feitas no contexto.
+            </summary>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="P:Myframework.Libraries.Domain.SeedWork.IUnitOfWork.AutoDetectChangesEnabled">
+            <summary>
+            Habilita ou desabilita a detecção automática de mudanaças realizadas no contexto.
+            </summary>
+        </member>
+    </members>
+</doc>

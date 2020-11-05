@@ -1,0 +1,952 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Myframework.Libraries.Application</name>
+    </assembly>
+    <members>
+        <member name="T:Myframework.Libraries.Application.ApplicationInsights.HttpContextRequestTelemetryInitializer">
+            <summary>
+            Initializer para obter dados do contexto Http para logar no Application Insights.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.BackgroundTasks.BaseBackgroundTask">
+            <summary>
+            Classe base com implementações comuns a execução de background taks.
+            </summary>
+            <typeparam name="TLogType"></typeparam>
+        </member>
+        <member name="F:Myframework.Libraries.Application.BackgroundTasks.BaseBackgroundTask.logger">
+            <summary>
+            Classe que permite logar informações.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.BackgroundTasks.BaseBackgroundTask.#ctor(Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Construtor padrão.
+            </summary>
+            <param name="taskOptions">Herde seu option de BaseBackgroundTaskOptions e passe via construtor.</param>
+            <param name="logger">Logger para logar a execução da task.</param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.BackgroundTasks.BaseBackgroundTask.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Inicia a execução da task em background.
+            </summary>
+            <param name="stoppingToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.BackgroundTasks.BaseBackgroundTask.DoTaskAsync">
+            <summary>
+            Task que será executada pelo job.
+            Atenção: Esse método será chamado periodicamente (valor do intervalo indicado na option), mesmo que a chamada anterior não termine.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Base.BaseController">
+            <summary>
+            Base controller com métodos úteis para controllers.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetIActionResult(Myframework.Libraries.Common.Results.Result)">
+            <summary>
+            Converte o result do Framework.Common para IActionResult.
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.CreateResultForQueries``1(``0)">
+            <summary>
+            Cria um result padrão para queries.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.SetResultProtocolFromRequestHeader(Myframework.Libraries.Common.Results.Result)">
+            <summary>
+            Atualiza o result com o protocolo presente no Header, se houver.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetClaim(System.String)">
+            <summary>
+            Retorna a claim pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetClaims(System.String)">
+            <summary>
+            Retorna as claims pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetClaimsValues(System.String)">
+            <summary>
+            Retorna os valores das claims pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetRolesFromClaims">
+            <summary>
+            Retorna as roles presentes nas claims.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetUserNameFromClaims">
+            <summary>
+            Retorna o user name presente nas claims através do claim type "preferred_username".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetScopesFromClaims">
+            <summary>
+            Retorna os scopes presentes nas claims através do ClaimType "scope".
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseController.GetCurrentCulture">
+            <summary>
+            Retorna a cultura atual da requisição.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseMvcController.GetCurrentUserAccessTokenAsync">
+            <summary>
+            Retorna o token de acesso do usuário logado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseMvcController.GetClaim(System.String)">
+            <summary>
+            Retorna a claim pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseMvcController.GetClaims(System.String)">
+            <summary>
+            Retorna as claims pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseMvcController.GetClaimsValues(System.String)">
+            <summary>
+            Retorna os valores das claims pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseMvcController.GetRolesFromClaims">
+            <summary>
+            Retorna as roles presentes nas claims.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Base.BaseMvcController.GetRequestProtocol">
+            <summary>
+            Retorna o protocolo da requisição. Se não houver, retornará uma nova instância.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.BindersConfigurations">
+            <summary>
+            Extensões do IServiceCollection para configurações de binders.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.BindersConfigurations.ConfigureCurrentCultureModelBinders(Microsoft.AspNetCore.Mvc.MvcOptions,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Configura os binders para a cultura corrente. O maior ganho é quando o client envia para a API uma data ou número como string, garantindo que o binder respeite a cultura.
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.CorsConfigurations">
+            <summary>
+            Extensões do IServiceCollection para configurações de CORS (Cross-origin resource sharing).
+            https://docs.microsoft.com/en-US/aspnet/core/security/cors?view=aspnetcore-2.1
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.CorsConfigurations.ConfigureCorsForAllowAny(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            Configura o CORS para permitir qualquer acesso.
+            </summary>
+            <param name="services"></param>
+            <param name="corsPolicyName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.DependencyInjectionConfigurations">
+            <summary>
+            Extensões do IServiceCollection para configuração de injeção de dependências.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.DependencyInjectionConfigurations.ConfigureAutofacDIWithDefaultModules(Autofac.ContainerBuilder,System.Reflection.Assembly,System.Reflection.Assembly,System.Reflection.Assembly,System.Reflection.Assembly,System.Reflection.Assembly,Autofac.Module[])">
+            <summary>
+            Configura a injeção de dependêcia com módulos os módulos (Autofac) default da arquitetura.
+            </summary>
+            <param name="container"></param>
+            <param name="commandsAssembly">Assembly no qual estão os comandos.</param>
+            <param name="queriesAssembly">Assembly no qual estão as queries.</param>
+            <param name="repositoryAssembly">Assembly no qual estão os repositórios.</param>
+            <param name="httpServicesAssembly">Assembly no qual estão os HTTP services.</param>
+            <param name="backgroundTasksAssembly">Assembly no qual estão as background taks.</param>
+            <param name="aditionalModules">Módulos adicionais, caso seja necessário.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.ApplicationModuleDI">
+            <summary>
+            Módulo padrão de injeção de dependência para a camada Application.
+            Realiza scan de queries (IQueries) e repositórios (IRepository) para criar as injeções de dependências.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.ApplicationModuleDI.#ctor(System.Reflection.Assembly,System.Reflection.Assembly,System.Reflection.Assembly,System.Reflection.Assembly)">
+            <summary>
+            Construtor padrão que exige que sejam informados os assemblies de query, repositório e communication services para escaneamento.
+            </summary>
+            <param name="queriesAssembly">Assembly no qual estão as queries.</param>
+            <param name="repositoriesAssembly">Assembly no qual estão os repositórios.</param>
+            <param name="httpServicesAssembly">Assembly no qual estão os HTTP services. Opcional.</param>
+            <param name="backgroundTasksAssembly">Assembly no qual estão as background taks.</param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.ApplicationModuleDI.Load(Autofac.ContainerBuilder)">
+            <summary>
+            Adiciona registros ao container de injeção.
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.MediatorModuleDI">
+            <summary>
+            Módulo padrão de injeção de dependência para o Mediator.
+            Realiza scan de commands e handlers para criar as injeções de dependências.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.MediatorModuleDI.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Construtor padrão que exige que sejam informados os assemblies handlers dos comandos e eventos para escaneamento.
+            </summary>
+            <param name="commandsAssemble">Assembly no qual estão os commandos e handlers.</param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.MediatorModuleDI.Load(Autofac.ContainerBuilder)">
+            <summary>
+            Adiciona registros ao container de injeção.
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.DocumentationConfigurations">
+            <summary>
+            Extensões do IServiceCollection para configurações de documentação da API.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.DocumentationConfigurations.ConfigureSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,Microsoft.OpenApi.Models.OpenApiInfo,System.String,System.Boolean)">
+            <summary>
+            Adiciona o gerador do swagger ao ASP.NET.
+            </summary>
+            <param name="services"></param>
+            <param name="xmlAPIFileName">Nome do arquivo XML usado na documentação.</param>
+            <param name="info">Informações da publicação da documentação.</param>
+            <param name="uriFriendlyName">Versão da documentação. Padrão: v1.</param>
+            <param name="useCustomSchemaIdsFullName">Adiciona a opção "options.CustomSchemaIds(it => it.FullName)" ao swagger.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.DocumentationConfigurations.UseSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">
+            <summary>
+            Adiciona o swagger para a aplicação.
+            </summary>
+            <param name="app"></param>
+            <param name="swaggerEndpointName"></param>
+            <param name="swaggerEndpointUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.FilterConfigurations">
+            <summary>
+            Extensões do IServiceCollection para configurações de filtros.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.FilterConfigurations.SuppressModelStateInvalidFilter(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Desabilita o retorno automático do asp.net para model state invalido. O model state será tratado por um filtro personalizado (ValidateBaseRequestMessageFilter)
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.GlobalizationConfigurations">
+            <summary>
+            Extensões do IServiceCollection para configurações de globalização da API.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.GlobalizationConfigurations.UseGlobalization(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            Adiciona suporte a globalização para a API.
+            </summary>
+            <param name="app"></param>
+            <param name="configuration"></param>
+            <param name="appSettingsGlobalizationSection">Seção do appsettings, onde estão as configurações de globalização.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.GlobalizationConfigurations.ConfigureResources(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            Configura resources para a API.
+            </summary>
+            <param name="services"></param>
+            <param name="resourceNamespace"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.HttpClientConfigurations">
+            <summary>
+            Extensões pra configurar HttpServices.
+            https://docs.microsoft.com/pt-br/aspnet/core/fundamentals/http-requests?view=aspnetcore-3.1
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.HttpClientConfigurations.ConfigureDefaultHttpService``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,Myframework.Libraries.Infra.Http.BaseHttpServiceOptions)">
+            <summary>
+            Adiciona um novo HttpService com: timeout, wait/retry e circuitbreak, as configurações de cada parte devem estar no appsettings e serão vinculadas ao BaseHttpServiceOptions.
+            </summary>
+            <typeparam name="THttpServiceInterface"></typeparam>
+            <typeparam name="THttpService"></typeparam>
+            <param name="services"></param>
+            <param name="baseHttpServiceOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.LogConfigurations">
+            <summary>
+            Extensões e métodos úteis para configurar logs no .NET CORE.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.LogConfigurations.ConfigureSerilog">
+            <summary>
+            Configura serilog com padrões de logs globais.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.MonitoringConfigurations">
+            <summary>
+            Extensões do IServiceCollection para configurações de monitoramento.
+            https://docs.microsoft.com/pt-br/azure/azure-monitor/app/app-insights-overview
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Configurations.MonitoringConfigurations.ConfigureMonitoringByApplicationInsights(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Adiciona monitoramento via application insights.
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Configurations.Swagger.SwaggerIgnoreBaseCommandPropertiesSchemaFilter">
+            <summary>
+            Filtro do swagger para remover certas propriedades, como Protocol do command.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Extensions.ControllerExtensions">
+            <summary>
+            Extensões para Controllers.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Extensions.HttpRequestExtensions.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Determines whether the specified HTTP request is an AJAX request.
+            </summary>
+            
+            <returns>
+            true if the specified HTTP request is an AJAX request; otherwise, false.
+            </returns>
+            <param name="request">The HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="request"/> parameter is null (Nothing in Visual Basic).</exception>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Extensions.IHostingEnvironmentExtensions">
+            <summary>
+            Extensões para o IHostingEnvironment.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Extensions.IHostingEnvironmentExtensions.IsLocal(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Verifica se a variável de ambiente atual é "Local".
+            </summary>
+            <param name="hostingEnvironment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Extensions.IHostingEnvironmentExtensions.IsTest(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Verifica se a variável de ambiente atual é "Test".
+            </summary>
+            <param name="hostingEnvironment"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Filters.CommandConfigurationFilter">
+            <summary>
+            Filtro responsável por configurar o protocolo tanto no header do request quanto no comando (quando a action esperar um). Além disso preenche o comando com o Auhtorization do header da requisição;
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.CommandConfigurationFilter.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.CommandConfigurationFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Ação antes da action executar.
+            Atribui o protocolo do header da requisição .
+            Atribui também ao comando, quando houver. 
+            Garante também que um comando não chegue nulo à action.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Filters.RestrictRolesAccessFilter">
+            <summary>
+            Filtro responsável por restringir acesso geral a apenas as roles desejadas. Exemplo de utilização: é desejado que no Admin o usuário não consiga nem navegar.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.RestrictRolesAccessFilter.#ctor(Microsoft.Extensions.Options.IOptions{Myframework.Libraries.Infra.Security.SecurityOptions})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.RestrictRolesAccessFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Ação antes da action executar.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.RestrictRolesAccessFilter.GetClaims(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            Retorna as claims pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.RestrictRolesAccessFilter.GetClaimsValues(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            Retorna os valores das claims pelo tipo.
+            </summary>
+            <param name="claimType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.RestrictRolesAccessFilter.GetRolesFromClaims(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Retorna as roles presentes nas claims.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Filters.ValidateCommandFilter">
+            <summary>
+            Filtro responsável por executar a verificação dos DataAnnotations dos comandos.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Filters.ValidateCommandFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Ocorre antes da action ser executada. Percorre os parâmetros da action e verifica se há algum comando inválido.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Application.HealthCheck.BaseHealthController">
+            <summary>
+            Controller base para health check.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.#ctor(Microsoft.Extensions.Options.IOptions{Myframework.Libraries.Infra.Log.Options.LogOptions},Microsoft.Extensions.Options.IOptions{Myframework.Libraries.Application.HealthCheck.HealthCheckOptions},Microsoft.Extensions.Caching.Memory.IMemoryCache,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="logOptions"></param>
+            <param name="healthCheckOptions"></param>
+            <param name="memoryCache"></param>
+            <param name="connectionString"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.HealthCheckAsync(System.IServiceProvider,System.Boolean)">
+            <summary>
+            Retorna o HealthCheck da API.
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="loadDependences"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.ApiUp">
+            <summary>
+            Retorna HttpStatusCode.OK. Serve para checar se a API está acessível.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.CheckLocalLogDirectoryAsync">
+            <summary>
+            Retorna HttpStatusCode.OK quando a API tem acesso de escrita na pasta local de logs e retorna HttpStatusCode.UnprocessableEntity quando não tiver.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.ClearLocalLogDirectory">
+            <summary>
+            Limpa o repositório local de logs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.GetLocalLogsAsync(Myframework.Libraries.Application.HealthCheck.ViewModels.HealthCheckLocalLogFileFilterViewModel)">
+            <summary>
+            Retorna a lista dos últimos arquivos gerados.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.CheckDatabaseConnection">
+            <summary>
+            Retorna detalhes sobre a conexão da API com o banco de dados.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.GetEnvironmentVariableAction">
+            <summary>
+            Retorna a variável de ambiente do ASP.NET CORE.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.GetProcessResourceUsageActionAsync(System.IServiceProvider)">
+            <summary>
+            Obtém estatística de uso de recursos da API.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.GenerateErrorLogLocal">
+            <summary>
+            Gera arquivo local de erro.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.GenerateExceptionForMiddleware">
+            <summary>
+            Lança uma exceção para ser tratada pelo middleware de erros.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.GetBackgroundTasksStatisticsHealth(System.Collections.Generic.IEnumerable{Microsoft.Extensions.Hosting.IHostedService})">
+            <summary>
+            Retorna a statísticas de execução de jobs.
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.CheckSerializationAndDeserializationForHttpGet(Myframework.Libraries.Application.HealthCheck.ViewModels.HealthCheckSerializationAndDeserializationViewModel)">
+            <summary>
+            Recebe informações usando [FromQuery] e retorna exatamente o que foi deserializado, para que possa comparar o que foi enviado para o servidor e como o sevidor entendeu.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.CheckSerializationAndDeserializationForHttpPost(Myframework.Libraries.Application.HealthCheck.ViewModels.HealthCheckSerializationAndDeserializationViewModel)">
+            <summary>
+            Recebe informações usando [FromBody] e retorna exatamente o que foi deserializado, para que possa comparar o que foi enviado para o servidor e como o sevidor entendeu.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.CheckSerializationAndDeserializationForHttpPut(System.Int32,Myframework.Libraries.Application.HealthCheck.ViewModels.HealthCheckSerializationAndDeserializationViewModel)">
+            <summary>
+            Recebe informações usando [FromRoute] e [FromBody] e retorna exatamente o que foi deserializado, para que possa comparar o que foi enviado para o servidor e como o sevidor entendeu.
+            </summary>
+            <param name="id"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.CheckGlobalizationBusinessError">
+            <summary>
+            Gera um Result do tipo BusinessError para validar a tradução do globalization.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.HealthCheck.BaseHealthController.GetWarningsAsync">
+            <summary>
+            Obtem warnings personalizados da API.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Middlewares.ErrorHandlerMiddleware">
+            <summary>
+            Middleware responsável por capturar erros não tratados, logar e gerar uma resposta padrão de erro.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Middlewares.ErrorHandlerMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{Myframework.Libraries.Infra.Log.Options.LogOptions},Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Logging.ILogger{Myframework.Libraries.Application.Middlewares.ErrorHandlerMiddleware})">
+            <summary>
+            Construtor padrão.
+            </summary>
+            <param name="nextMiddlewareInPipelineDelegate"></param>
+            <param name="logOptions"></param>
+            <param name="accessor"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Middlewares.ErrorHandlerMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Middlewares.RequestResponseLoggingMiddleware">
+            <summary>
+            Middleware responsável por logar request e response como um só registro.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Middlewares.RequestResponseLoggingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{Myframework.Libraries.Infra.Log.Options.LogOptions})">
+            <summary>
+            Construtor padrão.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Middlewares.RequestResponseLoggingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Middlewares.TranslationMiddleware">
+            <summary>
+            Middleware responsável por traduzir o response da chamada HTTP baseada no Result.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Middlewares.TranslationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Myframework.Libraries.Infra.Security.IClientTokenManager,Microsoft.Extensions.Logging.ILogger{Myframework.Libraries.Application.Middlewares.TranslationMiddleware},Myframework.Libraries.Infra.Log.Contracts.IErrorLogger,Microsoft.Extensions.Options.IOptions{Myframework.Libraries.Application.Options.TranslationOptions},Microsoft.Extensions.Options.IOptions{Myframework.Libraries.Application.Options.GlobalizationOptions},Microsoft.Extensions.Caching.Memory.IMemoryCache,System.Net.Http.IHttpClientFactory)">
+            <summary>
+            Construtor padrão
+            </summary>
+            <param name="nextMiddlewareInPipelineDelegate"></param>
+            <param name="tokenManager"></param>
+            <param name="logger"></param>
+            <param name="errorLogger"></param>
+            <param name="translateOptions"></param>
+            <param name="globalizationOptions"></param>
+            <param name="memoryCache"></param>
+            <param name="httpClientFactory"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureDateTimeBinder">
+            <summary>
+            Model binder responsável por tratar o formato de data para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureDateTimeBinder.BindModelAsync(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureDateTimeBinderProvider">
+            <summary>
+            Provider que utiliza o model binder responsável por tratar o formato de data para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureDateTimeBinderProvider.GetBinder(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureDecimalBinder">
+            <summary>
+            Model binder responsável por tratar o formato de decimal para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureDecimalBinder.BindModelAsync(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureDecimalBinderProvider">
+            <summary>
+            Provider que utiliza o model binder responsável por tratar o formato de decimal para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureDecimalBinderProvider.GetBinder(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureDoubleBinder">
+            <summary>
+            Model binder responsável por tratar o formato de double para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureDoubleBinder.BindModelAsync(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureDoubleBinderProvider">
+            <summary>
+            Provider que utiliza o model binder responsável por tratar o formato de double para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureDoubleBinderProvider.GetBinder(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureFloatBinder">
+            <summary>
+            Model binder responsável por tratar o formato de float para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureFloatBinder.BindModelAsync(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.ModelBinders.CurrentCultureFloatBinderProvider">
+            <summary>
+            Provider que utiliza o model binder responsável por tratar o formato de decimal para a cultura atual.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.ModelBinders.CurrentCultureFloatBinderProvider.GetBinder(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.MVC.Globalization.CustomMvcLocalizer`1">
+            <summary>
+            Derivação do StringLocalizer que permite buscar resources de um serviço ao invés de arquivo físico.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Myframework.Libraries.Application.MVC.IViewRenderService">
+            <summary>
+            Interface para mecanismo de renderização de view como string.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.MVC.IViewRenderService.RenderToStringAsync(System.String,System.Object)">
+            <summary>
+            Renderiza uma view como string.
+            </summary>
+            <param name="viewName"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.MVC.MvcJsonResult">
+            <summary>
+            Padrão de retorno para sites MVC.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.MVC.MvcJsonResult.StatusEnum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Myframework.Libraries.Application.MVC.MvcJsonResult.StatusEnum.Success">
+            <summary></summary>
+        </member>
+        <member name="F:Myframework.Libraries.Application.MVC.MvcJsonResult.StatusEnum.Warning">
+            <summary></summary>
+        </member>
+        <member name="F:Myframework.Libraries.Application.MVC.MvcJsonResult.StatusEnum.Error">
+            <summary></summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Response">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Protocol">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Validations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.UrlLocal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.UrlRedirect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Reload">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Html">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.MvcJsonResult.Exception">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.MVC.ValidationMessage">
+            <summary>
+            Representa uma mensagem de validação.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.ValidationMessage.Atributo">
+            <summary>
+            Campo com erro de validação. Ex: "Cep".
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.ValidationMessage.Mensagem">
+            <summary>
+            Mensagem para a validação do campo. Ex: "Campo obrigatório".
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.MVC.ExceptionMvcJson">
+            <summary>
+            Padrão de retorno de erro para sites MVC.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.MVC.ExceptionMvcJson.#ctor(System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="exc"></param>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.ExceptionMvcJson.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.ExceptionMvcJson.StackTrace">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.ExceptionMvcJson.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.MVC.ExceptionMvcJson.InnerException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.MVC.ViewRenderService">
+            <summary>
+            Interface para mecanismo de renderização de view como string.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.MVC.ViewRenderService.#ctor(Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine,Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataProvider,System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="razorViewEngine"></param>
+            <param name="tempDataProvider"></param>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Application.MVC.ViewRenderService.RenderToStringAsync(System.String,System.Object)">
+            <summary>
+            Renderiza uma view como string.
+            </summary>
+            <param name="viewName"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions">
+            <summary>
+            Classe base para options de background taks.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions.Interval">
+            <summary>
+            Intevalo entre as execuções da task.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions.Enabled">
+            <summary>
+            Indica se a task está habilitada ou não.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions.AwaitTaskEndsToDelayInterval">
+            <summary>
+            Indica se a task será chamada com await ou não.
+            True: a task é chamada com await e somente após seu término começa a contar o período de intervalo indicado.
+            False: a task é chamada em background e  o intervalo começa a contar a imediatamente, ou seja, a task pode 
+            ser chamada novamente antes que a chamada anterior não tenha acabado.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Options.GlobalizationOptions">
+            <summary>
+            Configurações de globalização.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Options.GlobalizationOptions.DefaultRequestCulture">
+            <summary>
+            Cultura padrão dos requests.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Options.GlobalizationOptions.SupportedCultures">
+            <summary>
+            Culturas suportadas.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Options.GlobalizationOptions.SupportedUICultures">
+            <summary>
+            Culturas de UI suportadas.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Options.GlobalizationOptions.UseQueryStringRequestCultureProvider">
+            <summary>
+            Indica se deve usar ou ignorar troca de cultura quando houver parâmetro de cultura na query string.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Queries.BasePageViewModel">
+            <summary>
+            View model base para queries paginadas.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Queries.BasePageViewModel.Page">
+            <summary>
+            Número da página, baseada em zero.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Application.Queries.BasePageViewModel.ItensPerPage">
+            <summary>
+            Quantidade de registros por página.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Security.Authorization.AuthorizeRolesAttribute">
+            <summary>
+            Atributo que herda de "AuthorizeAttribute" e transforma as roles no formato enum para string, que é usado pela classe base.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Security.Authorization.RolesGroups">
+            <summary>
+            Enumerador representando um grupo de roles.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Security.Authorization.RolesGroupsOrganizer">
+            <summary>
+            Classe estática para agrupar roles.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Security.Authorization.RolesGroupsOrganizer.Join(Myframework.Libraries.Application.Security.Authorization.Roles[])">
+            <summary>
+            Une as de roles em uma lista, removendo duplicidades.
+            </summary>
+            <param name="roles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Security.Authorization.RolesGroupsOrganizer.Join(System.Collections.Generic.List{Myframework.Libraries.Application.Security.Authorization.Roles}[])">
+            <summary>
+            Une todos as listas de roles em apenas uma, removendo duplicidades.
+            </summary>
+            <param name="roles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Security.Authorization.RolesGroupsOrganizer.Join(Myframework.Libraries.Application.Security.Authorization.RolesGroups[])">
+            <summary>
+            Une todos as listas de roles de cada grupo em apenas uma, removendo duplicidades.
+            </summary>
+            <param name="groups"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Application.Security.Authorization.RolesGroupsOrganizer.GetRolesFromGroup(Myframework.Libraries.Application.Security.Authorization.RolesGroups)">
+            <summary>
+            Retorna as roles de um grupo.
+            </summary>
+            <param name="rolesGroup"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

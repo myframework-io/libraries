@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Cria entidades no seed extension do DbContext.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>dbContextSeedEnumeration</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>entity</ID>
+          <ToolTip>Entity.</ToolTip>
+          <Default>Entity</Default>
+        </Literal>
+        <Literal>
+          <ID>dbContext</ID>
+          <ToolTip>DbContext.</ToolTip>
+          <Default>DbContext</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          private static void Create$entity$($dbContext$ context)
+          {
+              var itensAvaible = $entity$.GetAll().ToList();
+              var existingItens = context.$entity$.Select(it => it.Id).ToList();
+
+              var itensToCreate = itensAvaible.Where(it => !existingItens.Contains(it.Id)).ToList();
+
+              foreach ($entity$ item in itensToCreate)
+              {
+                  context.$entity$.Add(item);
+              }
+
+              context.SaveChanges();
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

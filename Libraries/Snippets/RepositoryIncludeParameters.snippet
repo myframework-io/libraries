@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Método de repositório com includes nos parâmetros.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>repositoryLinqEFIncludeAsParameter</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.Data</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq.Expressions</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>        
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>entity</ID>
+          <ToolTip>Entity.</ToolTip>
+          <Default>Entity</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public async Task<$entity$> Get$entity$ByIdAsync(Guid id, params Expression<Func<$entity$, object>>[] includes)
+          {
+              var query = context.$entity$.Where(it => it.Id == id);
+
+              if (includes != null)
+              {
+                  foreach (var include in includes)
+                  {
+                      query = query.Include(include);
+                  }
+              }
+
+              return await query.FirstOrDefaultAsync();
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
+

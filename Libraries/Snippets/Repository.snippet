@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Classe de repository.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>repository</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.Data</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>agreggateRootEntity</ID>
+          <ToolTip>Aggregate root entity.</ToolTip>
+          <Default>AgreggateRootEntity</Default>
+        </Literal>
+        <Literal>
+          <ID>dbContext</ID>
+          <ToolTip>DbContext.</ToolTip>
+          <Default>MyDbContext</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public class $agreggateRootEntity$Repository : BaseRepository<$dbContext$, $agreggateRootEntity$>, I$agreggateRootEntity$Repository
+          {
+              public $agreggateRootEntity$Repository($dbContext$ context) : base(context) { }
+          }
+            
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

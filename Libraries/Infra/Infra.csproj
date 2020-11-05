@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyName>Myframework.Libraries.Infra</AssemblyName>
+    <RootNamespace>Myframework.Libraries.Infra</RootNamespace>
+    <Authors>Myframework</Authors>
+    <Company>Myframework</Company>
+    <PackageIconUrl>file://192.168.101.34/Publico/Myframework/TI/RepositorioNuget/icon/Myframework.png</PackageIconUrl>
+    <Version>1.0.76</Version>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <AssemblyVersion>1.0.76.0</AssemblyVersion>
+    <FileVersion>1.0.76.0</FileVersion>
+    <Description></Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Myframework.Libraries.Infra.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="IdentityModel" Version="4.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="3.1.8" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <!--Adicionado para especificar o local onde o pacote nuget será gerado-->
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="C:\Nuget\" />
+  </Target>
+
+</Project>

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Modelo de entidade de domínio.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>entity</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Results</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Validators</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Domain.SeedWork</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace></Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>className</ID>
+          <ToolTip>ClassName</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[public class $className$ : Entity, IAggregateRoot
+    {
+        private $className$() { }
+
+        private readonly List<ChildItemExample> childItens = new List<ChildItemExample>();
+
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public byte StatusEnumerationExampleId { get; private set; }
+        public StatusEnumerationExample StatusEnumeration => StatusEnumerationExample.FromId<StatusEnumerationExample>(StatusEnumerationExampleId);
+        public IReadOnlyCollection<ChildItemExample> ChildItens => childItens;
+
+        public static Result<$className$> Create(string name, StatusEnumerationExample status, string createUser)
+        {
+            var result = new Result<$className$>();
+
+            name = name?.Trim();
+            createUser = createUser?.Trim();
+
+            var model = new $className$();
+
+            model.Validate(result, name, status, createUser);
+
+            if (!result.Valid)
+                return result;
+            
+            model.Name = name;
+            model.StatusEnumerationExampleId = statusEnumeration.Id;
+
+            result.Value = model;
+
+            return result;
+        }
+
+        public Result Update(string name, string updateUser)
+        {
+            var result = new Result();
+            
+            name = name?.Trim();
+            updateUser = updateUser?.Trim();
+
+            Validate(result, name, Birthdate, updateUser);
+
+            if (!result.Valid)
+                return result;
+
+            Name = name;
+
+            return result;
+        }
+
+        private void Validate(Result result, string name, StatusEnumerationExample status, string createUser)
+        {
+            string className = nameof($className$);
+
+            result.AddValidationsIfFails($$"{className}.{nameof(Name)}", ValidateName(name));
+            result.AddValidationsIfFails($$"{className}.{nameof(Status)}", ValidateStatus(status));
+            result.AddValidationsIfFails($$"{className}.{nameof(CreateUser)}", ValidateCreateUser(createUser));
+        }
+
+        private IValidatorResult ValidateName(string name) => name
+            .NotEmpty()
+            .NotNull()
+            .MaxLength(256);
+            
+        private IValidatorResult ValidateStatus(StatusEnumerationExample status) => status
+            .NotNull()
+            .Must(() => StatusEnumerationExample.GetAll<StatusEnumerationExample>().Any(it => it.Id == status.Id), "Invalid status.");
+            
+        private IValidatorResult ValidateCreateUser(string createUser) => createUser
+            .NotEmpty()
+            .NotNull()
+            .MaxLength(100);
+    }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

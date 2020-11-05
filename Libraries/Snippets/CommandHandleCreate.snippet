@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Classe de handle de command de criação.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>appCommandCreateHandle</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Results</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Domain.SeedWork</Namespace>
+        </Import>
+        <Import>
+          <Namespace>MediatR</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>entity</ID>
+          <ToolTip>Entity.</ToolTip>
+          <Default>EntityClass</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public class Create$entity$CommandHandle : IRequestHandler<Create$entity$Command, Result>
+          {
+              private readonly IUnitOfWork unitOfWork;
+              private readonly I$entity$Repository repository;
+
+              public Create$entity$CommandHandle(IUnitOfWork unitOfWork, I$entity$Repository repository)
+              {
+                  this.unitOfWork = unitOfWork;
+                  this.repository = repository;
+              }
+
+              public async Task<Result> Handle(Create$entity$Command command, CancellationToken cancellationToken = default)
+              {
+                  var result = new Result();
+
+                  if (command == null)
+                      return result.SetBusinessMessage("Command cannot be null.");
+
+                  if (await repository.Check$entity$AlreadyExistsAsync(command.Name))
+                      return result.SetBusinessMessage("There is already an $entity$ created with this name.");
+
+                  var resultCreate = $entity$.Create(command.Name);
+
+                  if (!resultCreate.Valid)
+                      return result.SetFromAnother(resultCreate);
+
+                  repository.Add(resultCreate.Value);
+
+                  return await unitOfWork.SaveChangesAsync();
+              }
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

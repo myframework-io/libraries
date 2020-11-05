@@ -1,0 +1,895 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Myframework.Libraries.Infra</name>
+    </assembly>
+    <members>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Commands.BaseCommand`1">
+            <summary>
+            Classe base para comandos que tem resultado (Result).
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.CQRS.Commands.BaseCommand`1.Protocol">
+            <summary>
+            Protocolo do comando.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.CQRS.Commands.BaseCommand`1.Authorization">
+            <summary>
+            Token de autorização da requisição.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.CQRS.Commands.BaseCommand`1.AuthorizationUser">
+            <summary>
+            Usuário do token de autorização da requisição.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Commands.BaseCommandResult">
+            <summary>
+            Classe base para comandos que tem resultado (Result) com valor de retorno.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Commands.BaseCommandResult`1">
+            <summary>
+            Classe base para comandos que tem resultado (Result) com valor de retorno.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Commands.ICommand`1">
+            <summary>
+            Interface para comandos que especifica um retorno genérico.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.CQRS.Commands.ICommand`1.Protocol">
+            <summary>
+            Protocolo do comando.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Mediators.IMediatorHandler">
+            <summary>
+            Interface para o mediador de comando e eventos.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Mediators.IMediatorHandler.DispatchCommandAsync``1(Myframework.Libraries.Infra.CQRS.Commands.ICommand{``0})">
+            <summary>
+            Dispara o comando.
+            </summary>
+            <typeparam name="TCommandResult"></typeparam>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Mediators.IMediatorHandler.DispatchDomainEventAsync(Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent)">
+            <summary>
+            Dispara o evento de domínio.
+            </summary>
+            <param name="@event"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Mediators.InMemoryMediatorHandler">
+            <summary>
+            Handle em memória responsável por encaminhar o comando para o framework de mediação.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Mediators.InMemoryMediatorHandler.#ctor(MediatR.IMediator)">
+            <summary>
+            Construtor padrão.
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Mediators.InMemoryMediatorHandler.DispatchCommandAsync``1(Myframework.Libraries.Infra.CQRS.Commands.ICommand{``0})">
+            <summary>
+            Dispara o comando.
+            </summary>
+            <typeparam name="TCommandResult"></typeparam>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Mediators.InMemoryMediatorHandler.DispatchDomainEventAsync(Myframework.Libraries.Domain.CQRS.DomainEvent.IDomainEvent)">
+            <summary>
+            Dispara o evento de domínio.
+            </summary>
+            <param name="event"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries">
+            <summary>
+            Classe com implementações bases para query.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.CountAsync(System.String,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa o count desejado.
+            </summary>
+            <param name="connString"></param>
+            <param name="query">A query a ser executada. Ex: "select count(*) from usuario"</param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.CountLongAsync(System.String,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa o count desejado.
+            </summary>
+            <param name="connString"></param>
+            <param name="query">A query a ser executada. Ex: "select count(*) from usuario"</param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.ExecuteScalarAsync``1(System.String,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa a query.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connString"></param>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.QueryFirstOrDefaultAsync``1(Microsoft.Data.SqlClient.SqlConnection,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa a query retornando o primeiro registro encontrado.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.QueryFirstOrDefaultAsync``1(System.String,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa a query retornando o primeiro registro encontrado.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connString"></param>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.QueryListAsync``1(Microsoft.Data.SqlClient.SqlConnection,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa a query retornando a lista de registros encontrados.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.QueryListAsync``1(System.String,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa a query retornando a lista de registros encontrados.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connString"></param>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.QueryPagedAsync``1(System.String,System.Int32,System.Int32,System.String,System.String,System.Object,System.Data.CommandType,System.Nullable{System.Int32})">
+            <summary>
+            Executa a query retornando a lista paginada de registros encontrados.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connString"></param>
+            <param name="page"></param>
+            <param name="itensPerPage"></param>
+            <param name="queryPaged"></param>
+            <param name="queryCount"></param>
+            <param name="param"></param>
+            <param name="commandType"></param>
+            <param name="commandTimeoutInSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.NormalizeWhereClause(System.String)">
+            <summary>
+            Normaliza a clausula where. Usado para quando estiver criando composição onde cláusular começam com "and".
+            Usar em conjuno com os métodos ComposeWhere.
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.ComposeWhereClause(System.Object,System.Object,System.String,System.String,System.String,System.String,System.Func{System.Boolean})">
+            <summary>
+            Compõe uma clásula where e adiciona o parametro à lista de parametros da query. Ex: " and u.Name = @name ".
+            </summary>
+            <param name="parameters"></param>
+            <param name="param"></param>
+            <param name="aliasAndField"></param>
+            <param name="paramName"></param>
+            <param name="conditionType"></param>
+            <param name="operationType"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.ComposeWhereClauseBetween(System.Object,System.Object,System.String,System.String,System.String,System.String,System.Func{System.Boolean})">
+            <summary>
+            Compõe uma clásula where filtrando um determinado parametro entre e dois campos de uma tabela. Ex: " paramName like aliasAndFieldBetweenFirstValue and isNull(aliasAndFieldBetweenLastValue, paramName)".
+            </summary>
+            <param name="parameters"></param>
+            <param name="param"></param>
+            <param name="paramName"></param>
+            <param name="aliasAndFieldBetweenFirstValue"></param>
+            <param name="aliasAndFieldBetweenLastValue"></param>
+            <param name="conditionType"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.ComposeWhereClauseBase(System.Object,System.Object,System.String,System.String,System.String,System.String,System.Func{System.Boolean})">
+            <summary>
+            Compõe uma clásula where e adiciona o parametro à lista de parametros da query. Ex: " and u.Name = @name ".
+            </summary>
+            <param name="parameters"></param>
+            <param name="param"></param>
+            <param name="aliasAndField"></param>
+            <param name="paramName"></param>
+            <param name="conditionType"></param>
+            <param name="operationType"></param>
+            <param name="hasValueFunction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.ComposeWhereClause(Dapper.DynamicParameters,System.Object,System.String,System.String,System.String,System.String,System.Func{System.Boolean})">
+            <summary>
+            Compõe uma clásula where e adiciona o parametro à lista de parametros da query. Ex: " and u.Name = @name ".
+            </summary>
+            <param name="parameters"></param>
+            <param name="param"></param>
+            <param name="aliasAndField"></param>
+            <param name="paramName"></param>
+            <param name="conditionType"></param>
+            <param name="operationType"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.ComposeWhereClauseBetween(Dapper.DynamicParameters,System.Object,System.String,System.String,System.String,System.String,System.Func{System.Boolean})">
+            <summary>
+            Compõe uma clásula where filtrando um determinado parametro entre e dois campos de uma tabela. Ex: " paramName like aliasAndFieldBetweenFirstValue and isNull(aliasAndFieldBetweenLastValue, paramName)".
+            </summary>
+            <param name="parameters"></param>
+            <param name="param"></param>
+            <param name="paramName"></param>
+            <param name="aliasAndFieldBetweenFirstValue"></param>
+            <param name="aliasAndFieldBetweenLastValue"></param>
+            <param name="conditionType"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.ComposeWhereClauseBase(Dapper.DynamicParameters,System.Object,System.String,System.String,System.String,System.String,System.Func{System.Boolean})">
+            <summary>
+            Compõe uma clásula where e adiciona o parametro à lista de parametros da query. Ex: " and u.Name = @name ".
+            </summary>
+            <param name="parameters"></param>
+            <param name="param"></param>
+            <param name="aliasAndField"></param>
+            <param name="paramName"></param>
+            <param name="conditionType"></param>
+            <param name="operationType"></param>
+            <param name="hasValueFunction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.NormalizePage(System.Int32,System.Int32)">
+            <summary>
+            Normaliza a página, garantindo que não seja negativa.
+            </summary>
+            <param name="page"></param>
+            <param name="defaultPage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.CQRS.Queries.BaseQueries.NormalizeItensPerPage(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Normaliza os itens por página para garantir que não seja negativo e nem excessivo.
+            </summary>
+            <param name="itensPerPage"></param>
+            <param name="defaultItensPerPage"></param>
+            <param name="maxItensPerpage"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.CQRS.Queries.IQueries">
+            <summary>
+            Interface base para identificar uma classe de query. 
+            Também é usada pelo scan automático de injeção de dependências.
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Data.BaseRepository`2">
+            <summary>
+            Classe com implementações básicas para repositórios.
+            </summary>
+            <typeparam name="TAggregateRoot"></typeparam>
+            <typeparam name="TDbContext"></typeparam>
+        </member>
+        <member name="F:Myframework.Libraries.Infra.Data.BaseRepository`2.context">
+            <summary>
+            Contexto de acesso a dados.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseRepository`2.#ctor(`0)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseRepository`2.GetByIdAsync(System.Object,System.Linq.Expressions.Expression{System.Func{`1,System.Collections.Generic.IEnumerable{System.Object}}}[])">
+            <summary>
+            Retorna a entidade filtrando pelo id, carregando as entidades relacinadas no parametro includes 
+            </summary>
+            <param name="id"></param>
+            <param name="relatedEntitiesToLoad"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseRepository`2.GetById(System.Object,System.Linq.Expressions.Expression{System.Func{`1,System.Collections.Generic.IEnumerable{System.Object}}}[])">
+            <summary>
+            Retorna a entidade filtrando pelo id, carregando as entidades relacinadas no parametro includes 
+            </summary>
+            <param name="id"></param>
+            <param name="relatedEntitiesToLoad"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseRepository`2.Add(`1)">
+            <summary>
+            Adiciona a entidade no context para operação de insert
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseRepository`2.Update(`1)">
+            <summary>
+            Altera a entidade no context para operação de update
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseRepository`2.Delete(`1)">
+            <summary>
+            Remove a entidade do context para operação de delete
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1">
+            <summary>
+            Implementação base do UnitOfWork que dispara eventos de domínios antes de salvar as alterações no banco.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.context">
+            <summary>
+            Contexto do EF.
+            </summary>
+        </member>
+        <member name="F:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.mediatorHandler">
+            <summary>
+            Mediador que dispara comandos e eventos.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.#ctor(`0,Myframework.Libraries.Infra.CQRS.Mediators.IMediatorHandler)">
+            <summary>
+            Construtor padrão.
+            </summary>
+            <param name="context"></param>
+            <param name="mediatorHandler"></param>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.AutoDetectChangesEnabled">
+            <summary>
+            Habilita ou desabilita o auto detect.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.Dispose">
+            <summary>
+            Libera os recursos da instância.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.SaveChanges">
+            <summary>
+            Dispara eventos e salva em seguida, de forma síncrona.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Dispara eventos e salva em seguida, de forma assíncrona.
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.BaseUnitOfWork`1.DispatchDomainEventsAsync">
+            <summary>
+            Dispara os eventos de domínio.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Data.Extensions.IQueryableExtensions">
+            <summary>
+            Extension para IQueryable.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.Extensions.IQueryableExtensions.ToPagedList``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Faz o processo de paginação (e count) sobre a query informada.
+            </summary>
+            <param name="query">Query na qual será aplicada a paginação.</param>
+            <param name="order">Expressão lambda para ordenação. Campo obrigatório para paginar. Exemplo: (e => e.Id)</param>
+            <param name="page">Numero da pagina.</param>
+            <param name="itensPerPage">Registros por pagina.</param>
+            <param name="orderAscending">Ordenação crescente (true) ou decrescente (false).</param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.Extensions.IQueryableExtensions.ToPagedListAsync``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Faz o processo de paginação (e count) sobre a query informada.
+            </summary>
+            <param name="query">Query na qual será aplicada a paginação.</param>
+            <param name="order">Expressão lambda para ordenação. Campo obrigatório para paginar. Exemplo: (e => e.Id)</param>
+            <param name="page">Numero da pagina.</param>
+            <param name="itensPerPage">Registros por pagina.</param>
+            <param name="orderAscending">Ordenação crescente (true) ou decrescente (false).</param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Data.Extensions.IQueryableExtensions.ToPagedListAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Faz o processo de paginação (e count) sobre a query informada.
+            </summary>
+            <param name="query">Query na qual será aplicada a paginação.</param>
+            <param name="page">Numero da pagina.</param>
+            <param name="itensPerPage">Registros por pagina.</param>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Http.Client.ContentsGenerators.IHttpContentGenerator">
+            <summary>
+            Interface usada para gerador de conteúdo HTTP (json, xml, etc).
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Client.ContentsGenerators.IHttpContentGenerator.GenerateContent(System.Object)">
+            <summary>
+            Transforma o objeto em conteúdo HTTP.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Http.Client.ContentsGenerators.JsonContentGenerator">
+            <summary>
+            Gerador de conteúdo HTTP do tipo json.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Client.ContentsGenerators.JsonContentGenerator.#ctor(System.Text.Encoding)">
+            <summary>
+            
+            </summary>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Client.ContentsGenerators.JsonContentGenerator.GenerateContent(System.Object)">
+            <summary>
+            Transforma o objeto em conteúdo HTTP do tipo json.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Http.Client.HttpResponseToResultDeserializers.HttpResponseToResultFactory">
+            <summary>
+            Fábrica responsável por selecionar o deserializador correspondente ao header MediaType.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Client.HttpResponseToResultDeserializers.HttpResponseToResultFactory.GetDeserializer(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Obtém o deserializador correspondente ao header MediaType.
+            </summary>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Http.Client.HttpResponseToResultDeserializers.HttpResponseToResultJsonDeserializer">
+            <summary>
+            Deserializador responsável por deserializar um retorno HTTP em Result.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Client.HttpResponseToResultDeserializers.HttpResponseToResultJsonDeserializer.DeserializeAsync``1(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Deserializa um retorno HTTP em HttpResult.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpResponse"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Http.Client.HttpResponseToResultDeserializers.IHttpResponseToResult">
+            <summary>
+            Interface que define o responsável por deserializar um retorno HTTP em HttpResult.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Client.HttpResponseToResultDeserializers.IHttpResponseToResult.DeserializeAsync``1(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Deserializa um retorno HTTP em HttpResult.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpResponse"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions">
+            <summary>
+            Extensões para o HttpClient.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.Ping(System.Net.Http.HttpClient,System.String)">
+            <summary>
+            Realiza um PING para a url informada. Por ser um PING, é usado somente a informação do host da URL para fazer o PING.
+            </summary>
+            <param name="httpClient"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.GetResultAsync``1(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo GET, serializando o request informado e deserializando a resposta em um Result.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="queryStringObject">Objeto que será transformado em query string. Use null caso não deseje passar parâmetros via query string.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.PostResultAsync``1(System.Net.Http.HttpClient,System.String,System.Object,Myframework.Libraries.Infra.Http.Client.ContentsGenerators.IHttpContentGenerator,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo POST, serializando o request informado e deserializando a resposta em um Result.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="bodyObject">Objeto que será serializado para envio no body da requisição.</param>
+            <param name="httpContentGenerator">O tipo de gerador do conteúdo Http. Exemplo: json, xml, etc.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.PostJsonResultAsync``1(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo POST, serializando o request informado e deserializando a resposta em um Result, usando JSON.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="bodyObject">Objeto que será serializado para envio no body da requisição.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.PostJsonResultAsync(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo POST, serializando o request informado e deserializando a resposta em um Result, usando JSON.
+            </summary>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="bodyObject">Objeto que será serializado para envio no body da requisição.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.PutResultAsync``1(System.Net.Http.HttpClient,System.String,System.Object,Myframework.Libraries.Infra.Http.Client.ContentsGenerators.IHttpContentGenerator,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo PUT, serializando o request informado e deserializando a resposta em um Result.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="bodyObject">Objeto que será serializado para envio no body da requisição.</param>
+            <param name="httpContentGenerator"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.PutJsonResultAsync``1(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo PUT, serializando o request informado e deserializando a resposta em um Result, usando JSON.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="bodyObject">Objeto que será serializado para envio no body da requisição.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.PutJsonResultAsync(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo PUT, serializando o request informado e deserializando a resposta em um Result, usando JSON.
+            </summary>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="bodyObject">Objeto que será serializado para envio no body da requisição.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.DeleteResultAsync``1(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo DELETE, serializando o request informado e deserializando a resposta em um Result.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="queryStringObject">Objeto que será transformado em query string. Use null caso não deseje passar parâmetros via query string.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.DeleteResultAsync(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Faz uma requisição do tipo DELETE, serializando o request informado e deserializando a resposta em um Result.
+            </summary>
+            <param name="httpClient"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="queryStringObject">Objeto que será transformado em query string. Use null caso não deseje passar parâmetros via query string.</param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.SendHttpRequestAsync``1(System.Net.Http.HttpClient,Myframework.Libraries.Common.Enums.HttpVerb,System.String,System.Net.Http.HttpContent,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+            <param name="httpClient"></param>
+            <param name="verb"></param>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="content"></param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Http.Exensions.HttpClientExtensions.CreateUriWithParamsFromRequestAsync(System.String,System.Object)">
+            <summary>
+            Cria a Uri completa, adicionando os parametros a partir do request informado
+            </summary>
+            <param name="requestUri">URI para realização da chamada HTTP. A URL chamada no HTTP será composta pela URI Base + esta URI.</param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Http.Handlers.BearerTokenHandler">
+            <summary>
+            Delegating handle para adicionar à requisição de um HttpClient o acess token presente no HttpContext.    
+            </summary>
+            <remarks>
+            Deve ser incluído na injeção de dependencia, como por exemplo: <strong><i>services.AddTransient&lt;BearerTokenHandler&gt;();</i></strong>.
+            Usado, geralmente, em aplicações ASP.NET MVC.
+            </remarks>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Log.Contracts.IErrorLogger">
+            <summary>
+            Interface padrão de log de erro.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Log.Contracts.IErrorLogger.LogAsync(System.Exception,System.Guid,System.String,System.String,System.String,System.String,Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Loga o erro.
+            </summary>
+            <param name="exception"></param>
+            <param name="protocol"></param>
+            <param name="loggedUser"></param>
+            <param name="ipClient"></param>
+            <param name="requestUrl"></param>
+            <param name="httpMethod"></param>
+            <param name="httpContext">Opcional. Usar quando for chamada HTTP.</param>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Log.Contracts.ILogRequestService">
+            <summary>
+            Interface para log de requisição.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Log.Contracts.ILogRequestService.LogRequestAsync(Myframework.Libraries.Infra.Log.Models.LogRequest)">
+            <summary>
+            Loga a requisição.
+            </summary>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Log.Contracts.IRequestResponseLogger">
+            <summary>
+            Logger para request/response.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Contracts.IRequestResponseLogger.LogOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Log.Contracts.IRequestResponseLogger.Logar(Microsoft.AspNetCore.Http.HttpContext,System.DateTime,System.DateTime,System.String,System.String,System.Int64)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Log.Models.LogRequest">
+            <summary>
+            Classe para representar o log de requisição.
+            </summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.Id">
+            <summary>Id do log de requisição.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.Protocol">
+            <summary>Protocolo gerado no response da requisição.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.ClientIP">
+            <summary>Endereço ip que realizou o request.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.UrlHost">
+            <summary>Host da URL. Ex: www.google.com.br/teste/123 => www.google.com.br. Incluir o protocolo nesta propriedade: http://www.google.com.br.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.UrlPath">
+            <summary>Parte da URL, sem levar em conta o host. Ex: www.google.com.br/teste/123 => /teste/123.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.RequestContentType">
+            <summary>Content type do request.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.RequestBody">
+            <summary>Content body do request.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.RequestMethod">
+            <summary>Tipo método do request (GET, POST, etc).</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.RequestHeaders">
+            <summary>Headers do request.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.RequestDate">
+            <summary>Timestamp do request.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.ResponseContentType">
+            <summary>Content type do response.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.ResponseBody">
+            <summary>Content body do response.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.ResponseStatusCode">
+            <summary>Status code do response.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.ResponseHeaders">
+            <summary>Headres do response.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.ResponseDate">
+            <summary>Timestamp do response.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.ResponseTimeMs">
+            <summary>Tempo de resposta da requisição em milisegundos.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.Tags">
+            <summary>Tags separadas por ";".</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.IdEntidade">
+            <summary>Identificador de entidade customizável.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Models.LogRequest.CustomData">
+            <summary>Dados customizados.</summary>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Log.Options.LogOptions">
+            <summary>Configurações do sistema dos middlewares de log.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.EnableLogRequest">
+            <summary>Indica se deve logar ou não as requisições.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.EnableLogError">
+            <summary>Indica se deve logar ou não os erros.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.LogRequestsInBackground">
+            <summary>Indica se deve logar ou não logar as requisições sem aguardar resposta.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.LogErrorInBackground">
+            <summary>Indica se deve logar ou não logar os erros sem aguardar resposta.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.ShowErrorDetailsInResponse">
+            <summary>Indica se deve mostrar detalhes da exception no retorno da API. Caso false, retornar mensagem padrão de erro do sistema.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.IgnoreExceptionsOccuredInLogProcess">
+            <summary>Indica se deve ignorar exceptions ocorridas no processo de log. Caso true, exceções não serão repassadas (com throw) no caso de falha do log.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.IgnoreExceptionsOccuredInLogFileProcess">
+            <summary>Indica se deve ignorar exceptions ocorridas no processo de log de arquivo (segunda tentativa). Caso true, exceções não serão repassadas (com throw) no caso de falha do log em arquivos.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.SensitiveProperties">
+            <summary>Propriedades sensíveis que serão substituídas ao logar. Ex: caso "cartão" esteja nessa lista, propriedades com esse nome serão salvar no log com "***".</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.ApplicationName">
+            <summary>Nome da aplicação.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.ServerName">
+            <summary>Nome/alias do servidor.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.ServerIp">
+            <summary>Ip do servidor.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.HttpApiErrorLogBaseUrl">
+            <summary>Url base para logar erro em um serviço externo.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.HttpApiErrorLogRoute">
+            <summary>Rota da api para logar erro em um serviço externo.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.HttpApiErrorLogTimeout">
+            <summary>Timeout da api de log de erro.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.DirectoryToLogErrorsOnFail">
+            <summary>Diretório para logar erros caso o log de erro padrão não funcione. Ou seja, o log do log.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.RedirectToPageIfIsNotAjaxRequest">
+            <summary>Opcional. Url para redirecionamento quando o request não é do tipo Ajax.</summary>
+        </member>
+        <member name="P:Myframework.Libraries.Infra.Log.Options.LogOptions.LogUsingHttpContextAccessToken">
+            <summary>Indica se deve passar o token do usuário da chamada HTTP. Caso falso, irá usar o processo de token do client (IClientTokenManager).</summary>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Log.WindowsEventLogs.WindowsEventLogExtensions">
+            <summary>
+            Extensões para tratar o EventLog.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Log.WindowsEventLogs.WindowsEventLogExtensions.WriteEntryForAspNetCoreProgramException(System.Diagnostics.EventLog,System.String,System.String,System.Exception,System.String)">
+            <summary>
+            Escreve no EventLog um erro ocorrido no Program.cs.
+            </summary>
+            <param name="eventLog"></param>
+            <param name="applicationName"></param>
+            <param name="sourceName"></param>
+            <param name="exc"></param> 
+            <param name="logName"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Log.WindowsEventLogs.WindowsEventLogExtensions.WriteEntryForAspNetCoreStartupConfigureServicesException(System.Diagnostics.EventLog,System.String,System.String,System.Exception,System.String)">
+            <summary>
+            Escreve no EventLog um erro ocorrido no Startup.cs, no método ConfigureServices.
+            </summary>
+            <param name="eventLog"></param>
+            <param name="applicationName"></param>
+            <param name="sourceName"></param>
+            <param name="exc"></param>
+            <param name="logName"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Log.WindowsEventLogs.WindowsEventLogExtensions.WriteEntryForAspNetCoreStartupConfigureException(System.Diagnostics.EventLog,System.String,System.String,System.Exception,System.String)">
+            <summary>
+            Escreve no EventLog um erro ocorrido no Startup.cs, no método Configure.
+            </summary>
+            <param name="eventLog"></param>
+            <param name="applicationName"></param>
+            <param name="sourceName"></param>
+            <param name="exc"></param>
+            <param name="logName"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Log.WindowsEventLogs.WindowsEventLogExtensions.WriteEntryForClassException(System.Diagnostics.EventLog,System.String,System.String,System.String,System.Exception,System.Int32,System.String)">
+            <summary>
+            Escreve no EventLog um erro ocorrido em uma classe/arquivo.
+            </summary>
+            <param name="eventLog"></param>
+            <param name="applicationName"></param>
+            <param name="className"></param>
+            <param name="sourceName"></param>
+            <param name="exc"></param>
+            <param name="eventId"></param>
+            <param name="logName"></param>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Security.ClientTokenManager">
+            <summary>
+            Classe para gerar token de acesso do tipo client a partir do servidor de autenticação.
+            Utilize essa classe como Singleton na injeção de dependência.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Security.ClientTokenManager.GetAccessTokenAsync">
+            <summary>
+            Obtém o token de acesso para o client. Esse método também realiza o refresh do token caso esteja expirado ou esteja para expirar.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Security.ClientTokenManager.ResetAccessTokenAsync">
+            <summary>
+            Reseta o token atual e força uma nova autenticação.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Infra.Security.IClientTokenManager">
+            <summary>
+            Classe para gerar token de acesso do tipo client a partir do servidor de autenticação.
+            Utilize essa classe como Singleton na injeção de dependência.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Security.IClientTokenManager.GetAccessTokenAsync">
+            <summary>
+            Obtém o token de acesso para o client. Esse método também realiza o refresh do token caso esteja expirado ou esteja para expirar.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Infra.Security.IClientTokenManager.ResetAccessTokenAsync">
+            <summary>
+            Reseta o token atual e força uma nova autenticação.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

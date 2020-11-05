@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Classe de queries.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>queries</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Pagination</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.CQRS.Queries</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Extensions.Options</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Collections.Generic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Dynamic</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>className</ID>
+          <ToolTip>ClassName</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public class $className$Queries : BaseQueries, I$className$Queries
+          {
+              private readonly ConnectionStringsOptions connStringOptions;
+              
+              public $className$Queries(IOptions<ConnectionStringsOptions> connStringOptions) => this.connStringOptions = connStringOptions.Value;
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

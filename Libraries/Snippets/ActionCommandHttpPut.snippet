@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Action HttpPut que processa um command.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>actionHttpPutCommand</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.CQRS.Mediators</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.AspNetCore.Mvc</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>resource</ID>
+          <ToolTip>Resource</ToolTip>
+          <Default>Resource</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          /// <summary>
+          /// 
+          /// </summary>
+          /// <param name="mediatorHandler"></param>
+          /// <param name="id"></param>
+          /// <param name="command"></param>
+          /// <returns></returns>
+          [Route("{id}"), HttpPut]
+          public async Task<IActionResult> Update$resource$Async([FromServices] IMediatorHandler mediatorHandler, [FromRoute]int id, [FromBody]Update$resource$Command command)
+          {
+              command.Id = id;
+              return GetIActionResult(await mediatorHandler.DispatchCommandAsync(command));
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

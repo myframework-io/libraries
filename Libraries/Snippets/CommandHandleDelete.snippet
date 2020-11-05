@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Classe de handle de command de delete.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>appCommandDeleteHandle</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Results</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Myframework.Libraries.Domain.SeedWork</Namespace>
+        </Import>
+        <Import>
+          <Namespace>MediatR</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>entity</ID>
+          <ToolTip>Entity.</ToolTip>
+          <Default>EntityClass</Default>
+        </Literal>
+        <Literal>
+          <ID>entityVar</ID>
+          <ToolTip>Entity var name.</ToolTip>
+          <Default>entity</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          public class Delete$entity$CommandHandle : IRequestHandler<Delete$entity$Command, Result>
+          {
+              private readonly IUnitOfWork unitOfWork;
+              private readonly I$entity$Repository repository;
+
+              public Delete$entity$CommandHandle(IUnitOfWork unitOfWork, I$entity$Repository repository)
+              {
+                  this.unitOfWork = unitOfWork;
+                  this.repository = repository;
+              }
+
+              public async Task<Result> Handle(Delete$entity$Command command, CancellationToken cancellationToken = default)
+              {
+                  var result = new Result();
+
+                  if (command == null)
+                      return result.SetBusinessMessage("Command cannot be null.");
+
+                  $entity$ $entityVar$ = await repository.GetByIdAsync(command.Id);
+                  
+                  if ($entityVar$ == null)
+                      return result.SetBusinessMessage("$entity$ not found.");
+
+                  repository.Delete($entityVar$);
+
+                  return await unitOfWork.SaveChangesAsync();
+              }
+          }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

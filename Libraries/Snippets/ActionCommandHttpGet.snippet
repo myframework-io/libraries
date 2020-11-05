@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Action HttpGet que processa uma query.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>actionHttpGetCommand</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Microsoft.AspNetCore.Mvc</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>return</ID>
+          <ToolTip>Return.</ToolTip>
+          <Default>ReturnViewModel</Default>
+        </Literal>
+        <Literal>
+          <ID>filter</ID>
+          <ToolTip>Filter.</ToolTip>
+          <Default>FilterViewModel</Default>
+        </Literal>
+        <Literal>
+          <ID>queries</ID>
+          <ToolTip>Queries class.</ToolTip>
+          <Default>IQueries</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          /// <summary>
+          /// 
+          /// </summary>
+          /// <param name="queries"></param>
+          /// <param name="filter"></param>
+          /// <returns></returns>
+          [Route(""), HttpGet, ProducesResponseType(200, Type = typeof(Result<$return$>))]
+          public async Task<IActionResult> GetItensAsync([FromServices]$queries$ queries, [FromQuery]$filter$ filter) =>
+              CreateResultForQueries(await queries.GetItensAsync(filter));
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

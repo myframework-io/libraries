@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Mapeamento de propriedades complex types.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>mapComplexTypeProperty</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+          builder.OwnsOne(it => it.PropComplexType, resbuilder =>
+          {
+              resbuilder.Property(it => it.Prop1).HasColumnName("Prop1").IsRequired();
+              resbuilder.Property(it => it.Prop2).HasColumnName("Prop2").IsRequired();
+          });
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

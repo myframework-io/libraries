@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Myframework.Libraries.Test</name>
+    </assembly>
+    <members>
+        <member name="T:Myframework.Libraries.Test.Commands.BaseCommandHandlerTest`3">
+            <summary>
+            Classe base com métodos úteis para testar commands handles.
+            </summary>
+            <typeparam name="TCommand"></typeparam>
+            <typeparam name="TCommandHandle"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="F:Myframework.Libraries.Test.Commands.BaseCommandHandlerTest`3.mockUnitOfWork">
+            <summary>
+            Mock default para UnitOfWork.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Test.Commands.BaseCommandHandlerTest`3.CreateInstanceOfCommandHandle">
+            <summary>
+            Método abstrato para criação do handle do teste.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Test.Commands.BaseCommandHandlerTest`3.AssertSaveChangesAsyncCall(System.Func{Moq.Times})">
+            <summary>
+            Verifica se o SaveChangesAsync foi chamado x vezes, de acordo com o desejado.
+            </summary>
+            <param name="times"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Test.Commands.BaseCommandHandlerTest`3.AssertSaveChangesCall(System.Func{Moq.Times})">
+            <summary>
+            Verifica se o SaveChanges foi chamado x vezes, de acordo com o desejado.
+            </summary>
+            <param name="times"></param>
+        </member>
+        <member name="M:Myframework.Libraries.Test.Commands.BaseCommandHandlerTest`3.CreateInstanceOfMemoryCache(Microsoft.Extensions.Caching.Memory.MemoryCacheOptions)">
+            <summary>
+            Cria uma instância do memory cache para uso nos testes.
+            </summary>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Test.Entities.BaseEntityTest`1">
+            <summary>
+            Classe com testes padrões de entidades.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:Myframework.Libraries.Test.Entities.EntityTestHelper">
+            <summary>
+            Classe com métodos úteis para testes de entidades.
+            </summary>
+        </member>
+        <member name="M:Myframework.Libraries.Test.Entities.EntityTestHelper.CheckIfEntityHaveOnlyOnePrivateOrProtectedOrInternalProtectedConstructor``1">
+            <summary>
+            Verifica se a entidade tem um único construtor e que ele não seja aberto.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Test.Entities.EntityTestHelper.CheckIfEntityHaveStaticCreateMethod``1">
+            <summary>
+            Verifica se uma entidade possui um método estático para criação, retornando um result da entidade em questão.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Test.Entities.EntityTestHelper.CheckIfEntityPropertiesHavePublicOrInternalSetAccessor``1">
+            <summary>
+            Verifica se as propriedades públicas da entidade estão com set protegido (não público).
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

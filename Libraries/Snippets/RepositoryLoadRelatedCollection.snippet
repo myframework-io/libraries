@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Query Linq para obter uma lista relacionada com filtro.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>repositoryLinqEFLoadRelatedCollection</Shortcut>
+    </Header>    
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Infra.Data</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>      
+      <Declarations>        
+        <Literal>
+          <ID>entityClass</ID>
+          <ToolTip>Entity.</ToolTip>
+          <Default>EntityClass</Default>
+        </Literal>
+        <Literal>
+          <ID>entityVar</ID>
+          <ToolTip>Entity var.</ToolTip>
+          <Default>entity</Default>
+        </Literal>
+        <Literal>
+          <ID>rellatedEntity</ID>
+          <ToolTip>Rellated child property.</ToolTip>
+          <Default>RellatedChildProp</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+            $entityClass$ $entityVar$ = await context.$entityClass$.Where(it => it.SampleProp == samplePropValue).FirstOrDefaultAsync();
+
+            if ($entityVar$ != null)
+            {
+                await context.Entry($entityVar$)
+                   .Collection(it => it.$rellatedEntity$)
+                   .Query()
+                   .Where(it => it.ChildSampleProp == childSamplePropValue)
+                   .ToListAsync();
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

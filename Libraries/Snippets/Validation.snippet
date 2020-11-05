@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Método de validação.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>entityValidation</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Myframework.Libraries.Common.Validators</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>methodName</ID>
+          <ToolTip>Method name</ToolTip>
+          <Default>Something</Default>
+        </Literal>
+        <Literal>
+          <ID>paramType</ID>
+          <ToolTip>Param type.</ToolTip>
+          <Default>string</Default>
+        </Literal>
+        <Literal>
+          <ID>paramName</ID>
+          <ToolTip>Param name</ToolTip>
+          <Default>name</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        private IValidatorResult Validate$methodName$($paramType$ $paramName$) => $paramName$
+            .NotEmpty("Is required.")
+            .NotNull("Is required.");
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

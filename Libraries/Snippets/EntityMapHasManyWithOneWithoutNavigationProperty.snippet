@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Mapeamento HasMany/WithOne sem propriedade de navegação.</Title>
+      <Author>Myframework</Author>
+      <Description></Description>
+      <Shortcut>mapEntityHasManyWithOneWithoutNavigationProperty</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.EntityFrameworkCore.Metadata.Builders</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal>
+          <ID>manyEntity</ID>
+          <ToolTip>Many Entity.</ToolTip>
+          <Default>ManyEntity</Default>
+        </Literal>
+        <Literal>
+          <ID>entity</ID>
+          <ToolTip>Nome da entidade principal.</ToolTip>
+          <Default>Entity</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+          builder.HasMany<$manyEntity$>().WithOne().HasForeignKey(it => it.$entity$Id).OnDelete(DeleteBehavior.Cascade);
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
+
