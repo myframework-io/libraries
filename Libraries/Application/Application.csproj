@@ -9,9 +9,9 @@
     <Company>Myframework</Company>
     <Product>Myframework.Libraries.Application</Product>
     <PackageIconUrl></PackageIconUrl>
-    <Version>1.0.76</Version>
-    <AssemblyVersion>1.0.76.0</AssemblyVersion>
-    <FileVersion>1.0.76.0</FileVersion>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Description></Description>
   </PropertyGroup>

@@ -8,12 +8,12 @@
     <Authors>Myframework</Authors>
     <Company>Myframework</Company>
     <PackageIconUrl></PackageIconUrl>
-    <Version>1.0.76</Version>
+    <Version>1.0.0</Version>
     
     <!-- Tag usada para que um projeto que tenha o xUnit como dependencia possa ser empacotado no nuget -->
     <IsPackable>true</IsPackable>
-    <AssemblyVersion>1.0.76.0</AssemblyVersion>
-    <FileVersion>1.0.76.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
