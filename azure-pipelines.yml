@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- master
+- main
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -12,6 +12,7 @@ pool:
 variables:
   solutionName: 'Libraries.sln'
   solutionFolder: 'Libraries'
+  unitTestProject: 'UnitTests.csproj'
 
 stages:
 - stage: Build
@@ -43,4 +44,4 @@ stages:
           displayName: 'Run Unit/Integration Tests'
           inputs:
             command: 'test'
-            projects: '$(solutionFolder)/$(solutionName)'
+            projects: '$(solutionFolder)/UnitTests/$(unitTestProject)'
