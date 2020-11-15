@@ -5,7 +5,7 @@
     /// </summary>
     internal class NotNullValidator : BaseValidator
     {
-        private readonly string defaultErrorMessage = "Can not be null.";
+        private readonly string defaultErrorMessage = "Cannot be null.";
 
         public NotNullValidator(object obj, string msg = null)
         {

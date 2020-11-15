@@ -40,10 +40,15 @@
           <ToolTip>List type.</ToolTip>
           <Default>BasePageViewModel</Default>
         </Literal>
+        <Literal>
+          <ID>filterType</ID>
+          <ToolTip>Filter type.</ToolTip>
+          <Default>FilterSampleViewModel</Default>
+        </Literal>
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[
-          public async Task<PagedList<$listType$>> GetItensPagedAsync($listType$ filter)
+          public async Task<PagedList<$listType$>> GetItensPagedAsync($filterType$ filter)
           {
               if (filter == null)
                   return new PagedList<$listType$>(new List<$listType$>(), 0, 0, 10);
@@ -51,9 +56,9 @@
               filter.ItensPerPage = NormalizeItensPerPage(filter.ItensPerPage);
               filter.Page = NormalizePage(filter.Page);
 
-              dynamic parameters = new ExpandoObject();
-              parameters.itensPerPage = filter.ItensPerPage;
-              parameters.page = filter.Page;
+              var parameters = new DynamicParameters();
+              parameters.Add("itensPerPage", filter.ItensPerPage);
+              parameters.Add("page", filter.Page);
 
               string where = "";
               where += ComposeWhereClause(parameters, filter.Id, "l.Id", "id");
@@ -114,3 +119,4 @@
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
+ 

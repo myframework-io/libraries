@@ -8,7 +8,7 @@ namespace Myframework.Libraries.Common.Validators.Types
     /// </summary>
     internal class NotEmptyValidator : BaseValidator
     {
-        private readonly string defaultErrorMsg = "Can not be empty.";
+        private readonly string defaultErrorMsg = "Cannot be empty.";
 
         public NotEmptyValidator(string str, string msg = null)
         {

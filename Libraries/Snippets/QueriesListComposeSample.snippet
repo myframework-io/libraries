@@ -40,15 +40,20 @@
           <ToolTip>List type.</ToolTip>
           <Default>SampleViewModel</Default>
         </Literal>
+        <Literal>
+          <ID>filterType</ID>
+          <ToolTip>Filter type.</ToolTip>
+          <Default>FilterSampleViewModel</Default>
+        </Literal>
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[
-          public async Task<List<$listType$>> GetItensAsync($listType$ filter)
+          public async Task<List<$listType$>> GetItensAsync($filterType$ filter)
           {
               if (filter == null)
                   return new List<$listType$>(new List<$listType$>(), 0, 0, 10);
 
-              dynamic parameters = new ExpandoObject();
+              var parameters = new DynamicParameters();
 
               string where = "";
               where += ComposeWhereClause(parameters, filter.StartDate, "l.CreatedOn", "startDate", operationType: ">=");
