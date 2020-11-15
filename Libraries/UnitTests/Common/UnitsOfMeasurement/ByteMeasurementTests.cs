@@ -1,4 +1,4 @@
-﻿using Myframework.Libraries.Common.UnitsOfMeasurement;
+﻿        using Myframework.Libraries.Common.UnitsOfMeasurement;
 using System;
 using System.Globalization;
 using Xunit;
@@ -305,7 +305,7 @@ namespace Common.UnitsOfMeasurement
         [Fact]
         public void ParseDecimalMB()
         {
-            string val = "100,5MB";
+            string val = $"{100.5.ToString("N1")}MB";
             var expected = ByteMeasurement.FromMegaBytes(100.5);
 
             var result = ByteMeasurement.Parse(val);
