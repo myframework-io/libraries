@@ -20,7 +20,7 @@
             Classe que permite logar informações.
             </summary>
         </member>
-        <member name="M:Myframework.Libraries.Application.BackgroundTasks.BaseBackgroundTask.#ctor(Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions,Microsoft.Extensions.Logging.ILogger)">
+        <member name="M:Myframework.Libraries.Application.BackgroundTasks.BaseBackgroundTask.#ctor(Myframework.Libraries.Application.Options.BackgroundTaskGlobalOptions,Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions,Microsoft.Extensions.Logging.ILogger)">
             <summary>
             Construtor padrão.
             </summary>
@@ -841,6 +841,11 @@
             <param name="viewName"></param>
             <param name="model"></param>
             <returns></returns>
+        </member>
+        <member name="T:Myframework.Libraries.Application.Options.BackgroundTaskGlobalOptions">
+            <summary>
+            Opções globais de configuração de background tasks (jobs).
+            </summary>
         </member>
         <member name="T:Myframework.Libraries.Application.Options.BaseBackgroundTaskOptions">
             <summary>

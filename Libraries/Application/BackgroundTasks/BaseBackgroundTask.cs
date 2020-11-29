@@ -19,6 +19,7 @@ namespace Myframework.Libraries.Application.BackgroundTasks
         /// </summary>
         protected readonly ILogger logger;
         private readonly BaseBackgroundTaskOptions taskOptions;
+        private readonly BackgroundTaskGlobalOptions globalOptions;
         private readonly string className;
 
         public BackgroundTaskStatistic Statistic { get; private set; }
@@ -28,10 +29,11 @@ namespace Myframework.Libraries.Application.BackgroundTasks
         /// </summary>
         /// <param name="taskOptions">Herde seu option de BaseBackgroundTaskOptions e passe via construtor.</param>
         /// <param name="logger">Logger para logar a execução da task.</param>
-        public BaseBackgroundTask(BaseBackgroundTaskOptions taskOptions, ILogger logger)
+        public BaseBackgroundTask(BackgroundTaskGlobalOptions globalOptions, BaseBackgroundTaskOptions taskOptions, ILogger logger)
         {
             this.taskOptions = taskOptions ?? throw new ArgumentException("Options missing.", nameof(taskOptions));
             this.logger = logger ?? throw new ArgumentException("Logger missing.", nameof(logger));
+            this.globalOptions = globalOptions ?? throw new ArgumentException("BackgroundTaskGlobalOptions missing.", nameof(globalOptions));
 
             className = GetType().Name;
             Statistic = new BackgroundTaskStatistic { Name = className };
@@ -54,7 +56,7 @@ namespace Myframework.Libraries.Application.BackgroundTasks
             while (!stoppingToken.IsCancellationRequested)
             {
                 //TODO: reler o appsettings ou usar o IOptions q enxerga mudancas
-                if (!taskOptions.Enabled)
+                if (!taskOptions.Enabled || globalOptions.DisableAllBackgroundServices)
                 {
                     await Task.Delay(10000, stoppingToken);
                     continue;

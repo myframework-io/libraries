@@ -5,6 +5,7 @@ using Myframework.Libraries.Common.Constants;
 using Myframework.Libraries.Common.Pagination;
 using Myframework.Libraries.Common.Results;
 using Myframework.Libraries.Infra.Log.Options;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -84,7 +85,7 @@ namespace Myframework.Libraries.Application.HealthCheck
         /// Retorna HttpStatusCode.OK. Serve para checar se a API está acessível.
         /// </summary>
         /// <returns></returns>
-        [HttpGet, Route("checks/up")]
+        [HttpGet, Route("checks/up"), AllowAnonymous]
         public IActionResult ApiUp() =>
             GetIActionResult(new Result());
 
