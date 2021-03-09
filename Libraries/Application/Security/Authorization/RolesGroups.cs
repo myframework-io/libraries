@@ -6,9 +6,6 @@
     public enum RolesGroups
     {
         Administrators = 1,
-        ProductManagers,
-        Supervisors,
-        Supports,
         Microservices
     }
 }

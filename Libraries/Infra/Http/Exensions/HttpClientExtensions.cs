@@ -320,7 +320,7 @@ namespace Myframework.Libraries.Infra.Http.Exensions
 
                 default:
                     if ((int)httpResponse.StatusCode > 400)
-                        result.Set((ResultCode)((int)httpResponse.StatusCode), $"Error returned in HttpClient call.");
+                        result.Set((ResultCode)((int)httpResponse.StatusCode), $"Error returned in HttpClient call: {httpResponse.StatusCode} - {httpResponse.ReasonPhrase}");
                     else
                         result.Set((ResultCode)((int)httpResponse.StatusCode), result.Message ?? Constant.Success);
                     break;

@@ -14,31 +14,6 @@ namespace Myframework.Libraries.Application.Security.Authorization
             Roles.Administrator
         };
 
-        private static readonly List<Roles> productManagers = new List<Roles>
-        {
-            Roles.ProductManagerCCIH,
-            Roles.ProductManagerIntegra,
-            Roles.ProductManagerMonitor,
-            Roles.ProductManagerSP,
-            Roles.ProductManagerSupport,
-            Roles.ProductManagerPublic
-        };
-
-        private static readonly List<Roles> supervisors = new List<Roles>
-        {
-            Roles.SupervisorCCIH,
-            Roles.SupervisorIntegra,
-            Roles.SupervisorMonitor,
-            Roles.SupervisorSP
-        };
-
-        private static readonly List<Roles> supports = new List<Roles>
-        {
-            Roles.SupportLevel1,
-            Roles.SupportLevel2,
-            Roles.SupportLevel3
-        };
-
         private static readonly List<Roles> microservices = new List<Roles>
         {
             Roles.Microservice
@@ -115,15 +90,6 @@ namespace Myframework.Libraries.Application.Security.Authorization
             {
                 case RolesGroups.Administrators:
                     return administrators;
-
-                case RolesGroups.ProductManagers:
-                    return productManagers;
-
-                case RolesGroups.Supervisors:
-                    return supervisors;
-
-                case RolesGroups.Supports:
-                    return supports;
 
                 case RolesGroups.Microservices:
                     return microservices;

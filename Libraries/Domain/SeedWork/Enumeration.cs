@@ -65,13 +65,48 @@ namespace Myframework.Libraries.Domain.SeedWork
         {
             var otherValue = obj as Enumeration<TEnumeration>;
 
-            if (otherValue == null)
+            if ((object)otherValue == null)
                 return false;
 
             bool typeMatches = GetType().Equals(obj.GetType());
             bool valueMatches = Id.Equals(otherValue.Id);
 
             return typeMatches && valueMatches;
+        }
+
+        /// <summary>
+        /// Verifica se um enumeration é igual a outro.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool operator ==(Enumeration<TEnumeration> a, Enumeration<TEnumeration> b)
+        {
+            if ((object)a == null && (object)b == null)
+                return true;
+
+            if ((object)a == null)
+                return false;
+
+            return a.Equals(b);
+        }
+
+        /// <summary>
+        /// Verifica se um enumeration é diferente de outro.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+
+        public static bool operator !=(Enumeration<TEnumeration> a, Enumeration<TEnumeration> b)
+        {
+            if ((object)a == null && (object)b == null)
+                return false;
+
+            if ((object)a == null)
+                return true;
+
+            return !a.Equals(b);
         }
 
         /// <summary>

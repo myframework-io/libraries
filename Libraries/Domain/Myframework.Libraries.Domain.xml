@@ -167,6 +167,22 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.op_Equality(Myframework.Libraries.Domain.SeedWork.Enumeration{`0},Myframework.Libraries.Domain.SeedWork.Enumeration{`0})">
+            <summary>
+            Verifica se um enumeration é igual a outro.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.op_Inequality(Myframework.Libraries.Domain.SeedWork.Enumeration{`0},Myframework.Libraries.Domain.SeedWork.Enumeration{`0})">
+            <summary>
+            Verifica se um enumeration é diferente de outro.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
         <member name="M:Myframework.Libraries.Domain.SeedWork.Enumeration`1.GetHashCode">
             <summary>
             Retorna o hash da instância.
