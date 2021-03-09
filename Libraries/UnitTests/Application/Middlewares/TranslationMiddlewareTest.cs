@@ -554,7 +554,7 @@ namespace Application.Middlewares
 
                 default:
                     if (httpResponse.StatusCode > 400)
-                        result.Set((ResultCode)(httpResponse.StatusCode), $"Error returned in HttpClient call.");
+                        result.Set((ResultCode)(httpResponse.StatusCode), $"Error returned in HttpClient call: {httpResponse.StatusCode}");
                     else
                         result.Set((ResultCode)(httpResponse.StatusCode), result.Message ?? Constant.Success);
                     break;

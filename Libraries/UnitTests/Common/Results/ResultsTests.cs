@@ -259,7 +259,8 @@ namespace Common.Results
             result.SetBusinessMessage(msg);
             result.AddValidation("Attr1", "An msg for attr1");
 
-            string expected = @"An message - Attr1: An msg for attr1";
+            string expected = @"An message
+- Attr1: An msg for attr1";
 
             Assert.Equal(expected, result.ToString());
         }
